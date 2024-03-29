@@ -35,7 +35,8 @@ execSync(`npx tsc`, {
     cwd: process.cwd(),
 });
 
-import 'colors';
+import './src/core/functions/colors.js';
+
 import { DefaultWebSocketManagerOptions } from "@discordjs/ws";
 import { ShardingManager } from 'discord.js';
 import config from './src/files/config.js';
@@ -55,5 +56,5 @@ if (config.discord.botPresence) {
 };
 
 let manager = new ShardingManager('./dist/src/core/bot.js', { totalShards: "auto", token: process.env.BOT_TOKEN || config.discord.token });
-manager.on("shardCreate", (shard) => logger.log(`${config.console.emojis.HOST} >> The Shard number ${shard.id} is launched !`.green));
+manager.on("shardCreate", (shard) => logger.log(`${config.console.emojis.HOST} >> The Shard number ${shard.id} is launched !`.green()));
 manager.spawn();
